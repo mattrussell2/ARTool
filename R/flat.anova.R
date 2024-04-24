@@ -15,15 +15,19 @@ flat.anova = function(m, ...) {
     UseMethod("flat.anova", m)
 }
 
-#' @importFrom lmerTest anova
+#' @importFrom lmerTest as_lmerModLmerTest
 #' @importFrom magrittr %<>%
 flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...) {
     print("flat.anova.default called")
+
+    #convert to lmerTest object for ddf="Satterthwaite"
+    lmer_m <- m %>% as_lmerModLmerTest()
+    
     #get ANOVA table
     a = switch(type,
-        I = lmerTest::anova(m, test=test, ddf=ddf, ...),
-        II = lmerTest::anova(m, type="II", test=test, ddf=ddf, ...),
-        III = lmerTest::anova(m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
+        I = anova(lmer_m, test=test, ddf=ddf, ...),
+        II = anova(lmer_m, type="II", test=test, ddf=ddf, ...),
+        III = anova(lmer_m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
     )
 
     #get the anova description from the heading
