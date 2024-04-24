@@ -21,9 +21,9 @@ flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...)
     print("flat.anova.default called")
     #get ANOVA table
     a = switch(type,
-        I = anova(m, test=test, ddf=ddf, ...),
-        II = anova(m, type="II", test=test, ddf=ddf, ...),
-        III = anova(m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
+        I = lmerTest::anova(m, test=test, ddf=ddf, ...),
+        II = lmerTest::anova(m, type="II", test=test, ddf=ddf, ...),
+        III = lmerTest::anova(m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
     )
 
     #get the anova description from the heading
