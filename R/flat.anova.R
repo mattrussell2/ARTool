@@ -30,6 +30,9 @@ flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...)
         III = anova(lmer_m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
     )
 
+    print("initial flat.anova.default result")
+    print(a)
+
     #get the anova description from the heading
     description = strsplit(attr(a, "heading"),"\n")[[1]]
     if (type == "I") description %<>% paste("(Type I)") #Type I ANOVAs don't include the label themselves
