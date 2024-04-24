@@ -114,6 +114,13 @@ anova.art = function(object,
     for (j in 1:ncol(responses)) {	#can't use ldply here because it appears to drop row names when binding rows
         aligned.by.term = colnames(responses)[[j]]
 
+        print("aligned.by.term")
+        print(aligned.by.term)
+        print("response")
+        print(response)
+        print("factor.contrasts")
+        print(factor.contrasts)
+        
         #get linear model
         m.l = artlm(m, aligned.by.term, response=response, factor.contrasts=factor.contrasts)
 
