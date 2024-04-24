@@ -14,15 +14,14 @@ flat.anova = function(m, ...) {
     UseMethod("flat.anova", m)
 }
 
-#' @importFrom stats anova
-#' @importFrom car Anova
+#' @importFrom lmerTest anova
 #' @importFrom magrittr %<>%
-flat.anova.default = function(m, type="III", test="F", ...) {
+flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...) {
     #get ANOVA table
     a = switch(type,
-        I = anova(m, test=test, ...),
-        II = Anova(m, type="II", test=test, ...),
-        III = Anova(m, type="III", test=test, ...)[-1,]	#first row is intercept => ignore
+        I = anova(m, test=test, ddf=ddf, ...),
+        II = anova(m, type="II", test=test, ddf=ddf, ...),
+        III = anova(m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
     )
 
     #get the anova description from the heading
