@@ -39,6 +39,8 @@ flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...)
     a = cbind(Term = rownames(a), a)
 
     attr(a, "description") = description
+    print("flat.anova.default result")
+    print(a)
     a
 }
 
