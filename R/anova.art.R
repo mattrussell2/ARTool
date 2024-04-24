@@ -82,6 +82,8 @@ anova.art = function(object,
     all.rows=FALSE,
     ...
 ) {
+    print("anova.art called")
+    
     #sensible names for generic parameters
     m = object
 
@@ -116,6 +118,7 @@ anova.art = function(object,
         m.l = artlm(m, aligned.by.term, response=response, factor.contrasts=factor.contrasts)
 
         #run anova and extract desired results
+        print("going to call flat.anova")
         anova.j = flat.anova(m.l, type=type, test=test, ...)
         if (j == 1) table.description = attr(anova.j, "description")
 
