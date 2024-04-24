@@ -11,12 +11,14 @@ globalVariables(c("Df", "Df.res", "Sum Sq", "Sum Sq.res", "Term", "Error"))
 
 
 flat.anova = function(m, ...) {
+    print("flat.anova called")
     UseMethod("flat.anova", m)
 }
 
 #' @importFrom lmerTest anova
 #' @importFrom magrittr %<>%
 flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...) {
+    print("flat.anova.default called")
     #get ANOVA table
     a = switch(type,
         I = anova(m, test=test, ddf=ddf, ...),
@@ -38,6 +40,7 @@ flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...)
 
 #' @importFrom magrittr %<>%
 flat.anova.lm = function(m, type="III", test="F", ...) {
+    print("flat.anova.lm called")
     a = flat.anova.default(m, type, test, ...)
     description = attr(a, "description")
     
