@@ -27,7 +27,7 @@ flat.anova.default = function(m, type="III", test="F", ddf="Satterthwaite", ...)
     a = switch(type,
         I = anova(lmer_m, test=test, ddf=ddf, ...),
         II = anova(lmer_m, type="II", test=test, ddf=ddf, ...),
-        III = anova(lmer_m, type="III", test=test, ddf=ddf, ...)[-1,]	#first row is intercept => ignore
+        III = anova(lmer_m, type="III", test=test, ddf=ddf, ...) #[-1,]	#first row is intercept => ignore
     )
 
     print("initial flat.anova.default result")
